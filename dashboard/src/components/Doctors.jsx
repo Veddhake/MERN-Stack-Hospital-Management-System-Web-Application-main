@@ -1,13 +1,11 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Context } from "../main";
-import { Navigate } from "react-router-dom";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  // const { isAuthenticated } = useContext(Context);
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -24,7 +22,6 @@ const Doctors = () => {
   }, []);
 
   const handleRemove = async (props) => {
-
     const formData = new FormData();
     formData.append("email", props.target.value);
 
@@ -38,20 +35,33 @@ const Doctors = () => {
       .catch((err) => {
         toast.error(err.response.data.message);
       });
-      window.location.reload(false);
+    window.location.reload(false);
   };
 
-  // if (!isAuthenticated) {
-  //   return <Navigate to={"/login"} />;
-  // }
+  const filteredDoctors = doctors.filter((doctor) => {
+    const fullName = `${doctor.firstName} ${doctor.lastName}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
+
   return (
     <section className="page doctors">
       <h1>DOCTORS</h1>
+
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search by first or last name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-bar"
+        />
+      </div>
+
       <div className="banner">
-        {doctors && doctors.length > 0 ? (
-          doctors.map((element) => {
+        {filteredDoctors && filteredDoctors.length > 0 ? (
+          filteredDoctors.map((element) => {
             return (
-              <div className="card">
+              <div className="card" key={element.email}>
                 <img
                   src={element.docAvatar && element.docAvatar.url}
                   alt="doctor avatar"
@@ -82,7 +92,13 @@ const Doctors = () => {
                 </div>
 
                 <div style={{ justifyContent: "center", alignItems: "center" }}>
-                  <button className="removeBtn" value={element.email} onClick={handleRemove}>Remove</button>
+                  <button
+                    className="removeBtn"
+                    value={element.email}
+                    onClick={handleRemove}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             );

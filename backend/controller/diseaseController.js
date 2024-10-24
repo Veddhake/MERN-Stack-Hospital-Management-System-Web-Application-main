@@ -5,7 +5,7 @@ import { Disease}  from "../models/diseaseSchema.js";
 export const sendDisease = catchAsyncErrors(async (req, res, next) => {
   const { symptom, department } = req.body;
   if (!symptom || !department ) {
-    return next(new ErrorHandler("Please Fill mm Full Form!", 400));
+    return next(new ErrorHandler("Please FillFull Form!", 400));
   }
   await Disease.create({ symptom,department });
   res.status(200).json({
