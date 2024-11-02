@@ -14,7 +14,7 @@ const Dashboard = () => {
     const fetchAppointments = async () => {
       try {
         const { data } = await axios.get(
-          "https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/appointment/getall",
+          "http://localhost:4000/api/v1/appointment/getall",
           { withCredentials: true }
         );
         setAppointments(data.appointments);
@@ -27,7 +27,7 @@ const Dashboard = () => {
     const fetchDoctors = async () => {
       try {
         const { data } = await axios.get(
-          "https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/user/doctors",
+          "http://localhost:4000/api/v1/user/doctors",
           { withCredentials: true }
         );
         setDoctors(data.doctors);
@@ -44,7 +44,7 @@ const Dashboard = () => {
   const handleUpdateStatus = async (appointmentId, status) => {
     try {
       const { data } = await axios.put(
-        `https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/appointment/update/${appointmentId}`,
+        `http://localhost:4000/api/v1/appointment/update/${appointmentId}`,
         { status },
         { withCredentials: true }
       );
@@ -62,9 +62,13 @@ const Dashboard = () => {
   };
 
   const { isAuthenticated, admin } = useContext(Context);
-  // if (!isAuthenticated) {
-  //   return <Navigate to={"/login"} />;
-  // }
+  
+  if (isAuthenticated === undefined) {
+    return null; // or a loading spinner
+  }
+  if (!isAuthenticated) {
+    return <Navigate to={"/login"} />;
+  }
 
   return (
     <>
