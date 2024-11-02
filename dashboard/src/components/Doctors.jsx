@@ -10,7 +10,7 @@ const Doctors = () => {
     const fetchDoctors = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/user/doctors",
+          "https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/user/doctors",
           { withCredentials: true }
         );
         setDoctors(data.doctors);
@@ -26,7 +26,7 @@ const Doctors = () => {
     formData.append("email", props.target.value);
 
     await axios
-      .post("http://localhost:4000/api/v1/user/doctor/remove", formData, {
+      .post("https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/user/doctor/remove", formData, {
         withCredentials: true,
       })
       .then((res) => {

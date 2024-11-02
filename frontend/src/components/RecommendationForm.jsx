@@ -14,7 +14,7 @@ const RecommendationForm = () => {
       try {
         console.log("Fetching Diseases Data");
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/disease/getall",
+          "https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/disease/getall",
           { withCredentials: true }
         );
         setDiseases(data.diseases); 
@@ -28,7 +28,7 @@ const RecommendationForm = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/doctors",
+        "https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/user/doctors",
         { withCredentials: true }
       );
       setDoctors(data.doctors);

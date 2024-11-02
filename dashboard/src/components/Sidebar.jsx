@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     await axios
-      .get("http://localhost:4000/api/v1/user/admin/logout", {
+      .get("https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/user/admin/logout", {
         withCredentials: true,
       })
       .then((res) => {
