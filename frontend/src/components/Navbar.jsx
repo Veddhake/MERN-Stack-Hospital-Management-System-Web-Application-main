@@ -41,7 +41,10 @@ const Navbar = () => {
             <Link to={"/"} onClick={() => setShow(!show)}>
               Home
             </Link>
-           
+            {
+              toast.error("DDDDDDDD");
+              toast.error(isAuthenticated);
+            }
             {isAuthenticated ? (
               <Link to={"/appointment"} onClick={() => setShow(!show)}>
                 Appointment
