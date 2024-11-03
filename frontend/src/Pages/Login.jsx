@@ -25,8 +25,6 @@ const Login = () => {
           }
         )
         .then((res) => {
-          toast.success(res.data.message);
-          toast.success("XXXXXXXXXXXXX");
           setIsAuthenticated(true);
           navigateTo("/");
           setEmail("");
