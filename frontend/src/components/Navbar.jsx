@@ -41,8 +41,8 @@ const Navbar = () => {
             <Link to={"/"} onClick={() => setShow(!show)}>
               Home
             </Link>
-            {toast.error("DDDDDDDD")}
-            {toast.error(isAuthenticated)}
+            {console.log ("DDDD")}
+            {console.log (isAuthenticated)}
             {isAuthenticated ? (
               <Link to={"/appointment"} onClick={() => setShow(!show)}>
                 Appointment
