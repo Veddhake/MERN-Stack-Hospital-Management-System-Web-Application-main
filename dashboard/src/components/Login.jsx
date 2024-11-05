@@ -18,7 +18,7 @@ const Login = () => {
     try {
       await axios
         .post(
-          "https://mern-stack-hospital-management-system-so1i.onrender.com/api/v1/user/login",
+          "https://hmbe.netlify.app/api/v1/user/login",
           { email, password, role: "Admin" },
           {
             withCredentials: true,
