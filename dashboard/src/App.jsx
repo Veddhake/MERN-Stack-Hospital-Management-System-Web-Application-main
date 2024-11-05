@@ -21,7 +21,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://hmbe.netlify.app/api/v1/user/admin/me",
+          "https://hmbe.netlify.app:4000/api/v1/user/admin/me",
           {
             withCredentials: true,
           }
