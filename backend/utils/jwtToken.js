@@ -3,6 +3,8 @@ export const generateToken = (user, message, statusCode, res) => {
   // Determine the cookie name based on the user's role
   const cookieName = user.role === 'Admin' ? 'adminToken' : 'patientToken';
 
+  console.log (cookieName);
+
   res
     .status(statusCode)
     .cookie(cookieName, token, {
