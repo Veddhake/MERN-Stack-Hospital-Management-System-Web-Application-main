@@ -57,6 +57,10 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if (role !== user.role) {
     return next(new ErrorHandler(`User Not Found With This Role!`, 400));
   }
+
+  console.log ('Password Match ', isPasswordMatch);
+  console.log (role, user.role);
+
   generateToken(user, "Login Successfully!", 201, res);
 });
 
